@@ -177,3 +177,54 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+
+Video Player
+Xml Code:
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainActivity">
+<VideoView
+android:id="@+id/videoView"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent" />
+<TextView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:fontFamily="monospace"
+android:text=" Demons Layer's Trailor"
+android:textColor="#E91E63"
+android:textSize="20sp"
+android:textStyle="bold"
+tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+Java Code:
+package com.example.video;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.MediaController;
+import android.widget.VideoView;
+public class MainActivity extends AppCompatActivity {
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+VideoView videoView = (VideoView) findViewById(R.id.videoView);
+videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.dl);
+MediaController mediaController = new MediaController(this);
+mediaController.setAnchorView(videoView);
+19
+videoView.setMediaController(mediaController);
+videoView.start();
+}
+}
+
